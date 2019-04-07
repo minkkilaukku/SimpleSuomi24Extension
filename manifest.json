@@ -9,14 +9,14 @@
             "js": [ /*"js/makeCollapse.js",*/ "js/suomi24Ext.js" ]
         }
     ],
-    
+    "browser_action": {
+        "default_icon": "img/suomi24Ext.png",
+        "default_title": "Suomi24"
+    },
     "permissions": [
         "storage",
         "tabs",
         "<all_urls>"
     ],
-    
     "web_accessible_resources": ["img/*.png"]
-    
-    
 }
