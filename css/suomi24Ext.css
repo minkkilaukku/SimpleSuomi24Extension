@@ -1,0 +1,125 @@
+.collapseButton {
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    padding: 0;
+    
+    /* these need to be set again when setting the background url programmatically
+    background-size: 20px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    */
+    
+    /* these too are set (to the constant COLL_BUTT_SIZE) programmatically
+    width: 20px;
+    height: 20px;
+    */
+}
+
+.collapseButton:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.collapseButton[collapsed="false"]::after {
+    content: "Piilota";
+    font: 14px Helvetica;
+    color: rgba(90, 0, 0, 0.8);
+    position: absolute;
+    left: 100%;
+    top: 0%;
+    margin-left: 5px;
+}
+
+
+.collapseButton[collapsed="true"]::after {
+    content: "Näytä";
+    font: 14px Helvetica;
+    color: rgba(0, 90, 0, 0.8);
+    position: absolute;
+    left: 100%;
+    top: 0%;
+    margin-left: 5px;
+}
+
+
+.comments-container {
+    transform-origin: top;
+    transition: max-height 0.3s cubic-bezier(1,0,1,0), transform 0.3s ease-out;
+    max-height: 1000000px; /* huge number to never limit when expanded*/
+    overflow-y: auto; /* just in case */
+}
+
+.comments-container.hiddenWithLankkiMiukku {
+    transform-origin: top;
+    transition: max-height 0.3s cubic-bezier(0,1,0,1), transform 0.3s ease-out;
+    max-height: 0;
+    overflow-y: auto;
+    transform: scaleY(0);
+    
+}
+
+
+#postIndexInfo {
+    position: relative;
+    font-size: 15px;
+    width: 50%;
+    text-align: right;
+    margin-left: 50%;
+    padding-right: 18px;
+    box-shadow: -3px 4px 7px black;
+    background-color: #53ad6b;
+    color: #fffb00;
+    text-shadow: 2px 0px black;
+}
+
+
+#postIndexInfo .percentBarHolder {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: 40%;
+    height: 20px;
+    margin-top: 5px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: rgba(30, 30, 30, 0.9);
+    color: black;
+    text-shadow: none;
+}
+
+
+#postIndexInfo .percentBar {
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #5de425;
+    color: #de1414;
+    box-shadow: 2px 2px 5px 1px black;
+    padding: 1px;
+    border: 3px;
+    border-color: green;
+    border-style: double;
+}
+
+.textPercentInside {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    color: #000000;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+
+#postIndexInfo input {
+    width: 40px;
+    color: black;
+}
+
