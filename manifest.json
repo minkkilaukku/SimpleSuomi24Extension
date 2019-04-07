@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Suomi24 Extension (Only find newest)",
+    "version": "1.0",
+    "content_scripts": [
+        {
+            "matches": ["https://keskustelu.suomi24.fi/*"],
+            "css": ["css/suomi24Ext.css"],
+            "js": [ /*"js/makeCollapse.js",*/ "js/suomi24Ext.js" ]
+        }
+    ],
+    
+    "permissions": [
+        "storage",
+        "tabs",
+        "<all_urls>"
+    ],
+    
+    "web_accessible_resources": ["img/*.png"]
+    
+    
+}
