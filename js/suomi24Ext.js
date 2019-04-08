@@ -168,7 +168,7 @@ var setKeyboardFindMsgListener = function() {
             event.preventDefault();
         };
         var keyListener = function(event) {
-            console.log("key down", event.keyCode);
+            //console.log("key down", event.keyCode);
             if (checkKeyCodeFunc(ob.prevKeyCode, event)) {
                 onKeyDownFunc(-1, event);
             } else if (checkKeyCodeFunc(ob.nextKeyCode, event)) {
