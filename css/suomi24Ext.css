@@ -123,3 +123,7 @@
     color: black;
 }
 
+/*textarea.comment-body takes higher priority over the pages own .comment-body*/
+textarea.comment-body {
+    resize: vertical;
+}
