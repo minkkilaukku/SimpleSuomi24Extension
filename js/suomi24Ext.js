@@ -124,51 +124,53 @@ var setKeyboardFindMsgListener = function() {
 };
 
 
+let postIndexInfo, postIndexInput;
 
-var postIndexInfo = document.createElement("div");
-postIndexInfo.id = "postIndexInfo";
-postIndexInfo.style.display = "none";
-postIndexInfo.innerHTML = "<span class=percentBar>0%</span> Aktiivi viesti 0/0";
-document.body.appendChild(postIndexInfo);
+window.onload = () => {
+
+    postIndexInfo = document.createElement("div");
+    postIndexInfo.id = "postIndexInfo";
+    postIndexInfo.style.display = "none";
+    postIndexInfo.innerHTML = "<span class=percentBar>0%</span> Aktiivi viesti 0/0";
+    document.body.appendChild(postIndexInfo);
 
 
-//TODO how to hide, this way won't allow to click for input
-//document.body.addEventListener("click", _=>postIndexInfo.style.display="none");
+    //TODO how to hide, this way won't allow to click for input
+    //document.body.addEventListener("click", _=>postIndexInfo.style.display="none");
 
-var postIndexInput = document.createElement("input");
-postIndexInfo.tabIndex = 12;
-postIndexInfo.addEventListener("keydown", function(evt) {
-    if (evt.keyCode===13) {
-        if (postIndexInfo.getElementsByTagName("input").length) {
-            //why won't postIndexInfo.value work here?? Why have to get the input like this:
-            postIndex = parseInt(postIndexInfo.getElementsByTagName("input")[0].value)-1;
-            if (Number.isInteger(postIndex)) moveInfoToUserPost(postIndex);
+    postIndexInput = document.createElement("input");
+    postIndexInfo.tabIndex = 12;
+    postIndexInfo.addEventListener("keydown", function(evt) {
+        if (evt.keyCode===13) {
+            if (postIndexInfo.getElementsByTagName("input").length) {
+                //why won't postIndexInfo.value work here?? Why have to get the input like this:
+                postIndex = parseInt(postIndexInfo.getElementsByTagName("input")[0].value)-1;
+                if (Number.isInteger(postIndex)) moveInfoToUserPost(postIndex);
+            }
         }
+    });
+    var postIndexClickHandler = evt=>{
+        evt.preventDefault();
+        if (!postIndexInfo.getElementsByTagName("input").length) {
+            var endPart = postIndexInfo.textContent.split("/")[1];
+            postIndexInfo.innerHTML = "Mene viestiin ";
+            postIndexInfo.appendChild(postIndexInput);
+            postIndexInfo.innerHTML += "/"+endPart;
+        }
+        postIndexInfo.getElementsByTagName("input")[0].focus();
+    };
+    postIndexInfo.addEventListener("click", postIndexClickHandler);
+
+
+    // set keyboard control of finding most recent posts
+    setKeyboardFindMsgListener();
+    
+    
+    //click the 'lue lisää'-button automatically
+    let readMoreButt = document.getElementsByClassName('ThreadBody__ReadMoreButton-sc-1mjl49q-2')[0];
+    if (readMoreButt) {
+        //console.log("Clicking read more", readMoreButt);
+        readMoreButt.click();
     }
-});
-var postIndexClickHandler = evt=>{
-    evt.preventDefault();
-    if (!postIndexInfo.getElementsByTagName("input").length) {
-        var endPart = postIndexInfo.textContent.split("/")[1];
-        postIndexInfo.innerHTML = "Mene viestiin ";
-        postIndexInfo.appendChild(postIndexInput);
-        postIndexInfo.innerHTML += "/"+endPart;
-    }
-    postIndexInfo.getElementsByTagName("input")[0].focus();
+    
 };
-postIndexInfo.addEventListener("click", postIndexClickHandler);
-
-
-// set keyboard control of finding most recent posts
-setKeyboardFindMsgListener();
-
-
-/* Another method, for putting the comment-body style that should overwrite existing one
-var addStyles = () => {
-    let s = document.createElement("style");
-    s.innerHTML = '.comment-body{resize:vertical;}';
-    document.head.appendChild(s);
-};
-
-addStyles();
-*/
