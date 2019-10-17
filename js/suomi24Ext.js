@@ -167,7 +167,7 @@ window.addEventListener('load', () => {
     
     
     //click the 'lue lisää'-button automatically
-    let readMoreButt = document.getElementsByClassName('ThreadBody__ReadMoreButton-sc-1mjl49q-2')[0];
+    let readMoreButt = document.querySelector("button.ThreadBody__ReadMoreButton-sc-1mjl49q-2.bzkVHZ");
     if (readMoreButt) {
         //console.log("Clicking read more", readMoreButt);
         readMoreButt.click();
