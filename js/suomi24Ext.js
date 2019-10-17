@@ -126,7 +126,7 @@ var setKeyboardFindMsgListener = function() {
 
 let postIndexInfo, postIndexInput;
 
-window.onload = () => {
+window.addEventListener('load', () => {
 
     postIndexInfo = document.createElement("div");
     postIndexInfo.id = "postIndexInfo";
@@ -172,5 +172,6 @@ window.onload = () => {
         //console.log("Clicking read more", readMoreButt);
         readMoreButt.click();
     }
+
     
-};
+});
